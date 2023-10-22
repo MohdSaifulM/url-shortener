@@ -5,7 +5,13 @@ import url from "../models/url";
 import { generateShortURL } from "../utils/generateShortURL";
 
 export const createShortURL = catchAsync(async (req: Request, res: Response) => {
+    // Define short url if not given
     if (!req.body.short_url) req.body.short_url = generateShortURL();
-    const short_url: URLType = await url.create(req.body);
-    res.status(200).json(short_url);
+    // Check if url already exist and keep generating short url
+    do {
+        req.body.short_url = generateShortURL();
+    } while (await url.findOne({ short_url: req.body.short_url }));
+    // Save new url document
+    const newURL: URLType = await url.create(req.body);
+    res.status(200).json(newURL);
 });
