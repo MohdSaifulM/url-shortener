@@ -3,8 +3,10 @@ import mongoose from "mongoose";
 import cors from "cors";
 
 //?===========Import Routes=======
+import urlRoutes from "./routes/urlRoutes";
 
 const app: Application = express();
+const base = '/api/v1';
 const PORT: number = 5000; //! Should be placed in environment variables
 const uri = "mongodb://127.0.0.1:27017/url-shortener"; //! Should be placed in environment variables
 
@@ -15,13 +17,13 @@ app.use(express.json());
 app.use(cors());
 
 //?===========Routes==============
+app.use(`${base}/url`, urlRoutes);
 
 app.all("*", (req, res) => {
     res.send("404!");
 });
 
 app.use(
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (err: any | unknown, req: Request, res: Response) => {
         const { status = 500 } = err;
         res.status(status).send(err.message);
