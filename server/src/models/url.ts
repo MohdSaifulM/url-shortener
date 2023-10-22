@@ -17,10 +17,6 @@ const urlSchema = new Schema({
     domain: {
         type: String
     },
-    creationDate: {
-        type: Date,
-        default: Date.now
-    },
     expirationDate: {
         type: Date
     },
