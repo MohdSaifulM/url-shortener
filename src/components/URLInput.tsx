@@ -44,7 +44,7 @@ function URLInput() {
     }
 
     return (
-        <div className="dark:bg-gray-700 h-screen w-screen flex flex-col justify-center items-center font-light">
+        <div className="dark:bg-gray-700 h-4/5 flex flex-col justify-center items-center font-light">
             <ToastContainer
                 position="top-right"
                 autoClose={5000}
