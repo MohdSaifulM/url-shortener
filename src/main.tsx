@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import URLInput from './components/URLInput.tsx';
 import ErrorPage from './pages/ErrorPage.tsx';
-import './../dist/output.css';
+import './assets/output.css';
 
 // TODO add dashboard page
 const router = createBrowserRouter([

@@ -4,10 +4,12 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "start:dev": "npm-run-all --parallel dev tailwind:watch",
     "dev": "vite",
-    "build": "npx tailwindcss -i ./src/index.css -o ./dist/output.css && tsc && vite build",
+    "build": "npm run tailwind:build && tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "tailwind:watch": "npx tailwindcss -i ./src/index.css -o ./dist/output.css --watch",
+    "tailwind:build": "npx tailwindcss -i ./src/index.css -o ./src/assets/output.css",
+    "tailwind:watch": "npx tailwindcss -i ./src/index.css -o ./src/assets/output.css --watch",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -29,6 +31,7 @@
     "eslint": "^8.45.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
+    "npm-run-all": "^4.1.5",
     "prettier": "^3.0.3",
     "prettier-plugin-tailwindcss": "^0.5.6",
     "tailwindcss": "^3.3.3",
