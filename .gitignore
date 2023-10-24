@@ -24,3 +24,4 @@ dist-ssr
 *.sw?
 
 production.json
+.env*

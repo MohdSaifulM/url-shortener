@@ -4,6 +4,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios";
 
 function URLInput() {
+    const api_url = import.meta.env.VITE_API_URL;
+    console.log("🚀 ~ file: URLInput.tsx:8 ~ URLInput ~ api_url:", api_url)
+
     const [inputURL, setInputURL] = useState('');
 
     const handleInputChange = (event: { target: { value: any; }; }) => {
@@ -18,7 +21,7 @@ function URLInput() {
         try {
             // TODO to validate if string is url
             // Save shorten URL
-            const response = await axios.post('http://localhost:5000/api/v1/url/create', { original_url: inputURL });
+            const response = await axios.post(`${api_url}/url/create`, { original_url: inputURL });
             if (response) {
                 // Show success toast
                 toast("Successfully shorten URL ✅");

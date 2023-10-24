@@ -6,7 +6,7 @@
   "scripts": {
     "start:dev": "npm-run-all --parallel dev tailwind:watch",
     "dev": "vite",
-    "build": "npm run tailwind:build && tsc && vite build",
+    "build": "npm run tailwind:build && tsc && vite build --mode production",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "tailwind:build": "npx tailwindcss -i ./src/index.css -o ./src/assets/output.css",
     "tailwind:watch": "npx tailwindcss -i ./src/index.css -o ./src/assets/output.css --watch",
@@ -23,6 +23,7 @@
     "swr": "^2.2.4"
   },
   "devDependencies": {
+    "@types/node": "^20.8.8",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@typescript-eslint/eslint-plugin": "^6.9.0",
