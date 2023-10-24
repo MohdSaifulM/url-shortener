@@ -17,9 +17,7 @@ function URLInput() {
         const url = event.target.value;
 
         // Check if input is valid
-        if (urlPattern.test(url)) {
-            setIsValidURL(false);
-        }
+        if (urlPattern.test(url)) setIsValidURL(true);
 
         // Update state with url value
         setInputURL(url);
