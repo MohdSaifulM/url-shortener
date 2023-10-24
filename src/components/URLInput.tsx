@@ -5,7 +5,6 @@ import axios from "axios";
 
 function URLInput() {
     const api_url = import.meta.env.VITE_API_URL;
-    console.log("🚀 ~ file: URLInput.tsx:8 ~ URLInput ~ api_url:", api_url)
 
     const [inputURL, setInputURL] = useState('');
 
