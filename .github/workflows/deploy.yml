@@ -10,10 +10,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Use Node.js 18
-        uses: actions/setup-node@v3.3.0
-        with:
-          node-version: 18
       - name: SSH into EC2
         uses: appleboy/ssh-action@master
         with:
@@ -22,6 +18,5 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           port: 22
           script: |
-            node -v
             ./deploy.sh
 
