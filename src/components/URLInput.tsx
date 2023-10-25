@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios";
 
@@ -44,21 +44,9 @@ function URLInput() {
     }
 
     return (
-        <div className="dark:bg-gray-700 h-4/5 flex flex-col justify-center items-center font-light">
-            <ToastContainer
-                position="top-right"
-                autoClose={5000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                theme="light"
-            />
+        <div className="dark:bg-gray-700 absolute top-2/4 left-2/4 transform -translate-x-1/2 -translate-y-1/2 flex flex-col justify-center items-center font-light">
             <div className="mb-6">
-                <label htmlFor="url-input" className="block mb-2 text-3xl text-gray-500 dark:text-white">Input URL to shorten</label>
+                <label htmlFor="url-input" className="md:text-3xl block mb-2 text-2xl text-center text-gray-500 dark:text-white">Input URL to shorten</label>
                 <input
                     type="text"
                     id="url-input"
