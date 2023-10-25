@@ -6,6 +6,9 @@ const urlSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
+    title: {
+        type: String
+    },
     original_url: {
         type: String,
         required: true
@@ -16,9 +19,6 @@ const urlSchema = new Schema({
     },
     domain: {
         type: String
-    },
-    expirationDate: {
-        type: Date
     },
     clicks: [
         {

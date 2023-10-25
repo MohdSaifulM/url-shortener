@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Layout from './pages/Layout.tsx';
 import URLInput from './components/URLInput.tsx';
 import ErrorPage from './pages/ErrorPage.tsx';
+import Dashboard from './pages/Dashboard.tsx';
 import './assets/output.css';
 
 // TODO add dashboard page
@@ -15,7 +16,11 @@ const router = createBrowserRouter([
 			{
 				path: "/",
 				element: <URLInput />
-			}	
+			}, 
+			{
+				path: "/dashboard",
+				element: <Dashboard />
+			}
 		]
 	},
 ]);

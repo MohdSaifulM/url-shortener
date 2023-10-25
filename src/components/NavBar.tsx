@@ -1,22 +1,17 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Navbar } from 'flowbite-react';
 import { navTheme } from '../styles-overwrite';
 import logo from '/web-internet.svg';
 
 function NavBar() {
 
-    const [activeOption, setActiveOption] = useState('Home');
+    const location = useLocation();
 
     const navlist = [
         { title: 'Home', navigate: '/' },
         { title: 'Dashboard', navigate: '/dashboard' },
         { title: 'Login', navigate: '/login' }
     ];
-
-    const handleClick = (option: string) => {
-        setActiveOption(option)
-    }
 
     return (
         <Navbar fluid rounded>
@@ -32,8 +27,7 @@ function NavBar() {
                             as={Link}
                             to={nav.navigate}
                             key={index}
-                            onClick={() => handleClick(nav.title)}
-                            active={nav.title === activeOption ? true : false}
+                            active={nav.navigate === location.pathname}
                             theme={navTheme?.link}
                         >
                             {nav.title}
