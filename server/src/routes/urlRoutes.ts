@@ -1,5 +1,5 @@
 import { Router } from "express";
-import {createShortURL} from "../controllers/urlController";
+import { createShortURL } from "../controllers/urlController";
 
 const urlRoutes: Router = Router();
 
