@@ -44,7 +44,8 @@ app.get('/:short_url', catchAsync(async (req: Request, res: Response, next: Next
                 },
                 deviceType: req.useragent?.isMobile ? 'mobile' : req.useragent?.isTablet ? 'tablet' : 'desktop',
                 browser: req.useragent?.browser,
-                operatingSystem: req.useragent?.os
+                operatingSystem: req.useragent?.os,
+                urlId: urlEntry._id
             }
             // Save new click document
             const newClick: ClickType = await click.create(payload);

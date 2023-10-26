@@ -1,4 +1,4 @@
-import { model, Schema } from "mongoose";
+import mongoose, { model, Schema } from "mongoose";
 import { ClickType } from "../types/clickType";
 
 const clickSchema = new Schema({
@@ -21,6 +21,10 @@ const clickSchema = new Schema({
     },
     operatingSystem: {
         type: String
+    },
+    urlId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'URL'
     }
 }, {
     timestamps: true

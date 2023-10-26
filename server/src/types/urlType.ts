@@ -1,5 +1,4 @@
-import { Document } from "mongoose";
-import { ClickType } from "./clickType";
+import { Document, ObjectId } from "mongoose";
 import { UserType } from "./userType";
 
 export interface URLType extends Document {
@@ -8,5 +7,5 @@ export interface URLType extends Document {
     original_url: string,
     short_url: string,
     domain: string | null,
-    clicks: [ClickType]
+    clicks: [ObjectId]
 }
