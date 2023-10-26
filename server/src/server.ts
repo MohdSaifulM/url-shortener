@@ -33,7 +33,6 @@ app.get('/:short_url', catchAsync(async (req: Request, res: Response, next: Next
         const clientIp = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
         // Perform IP geolocation lookup
         const response: IPinfo = await ipinfoWrapper.lookupIp(clientIp && clientIp !== '::1' ? clientIp.toString() : "8.8.8.8");
-        console.log("🚀 ~ file: server.ts:34 ~ app.get ~ clientIp:", clientIp)
 
         if (response) {
             // Create click payload
@@ -49,7 +48,6 @@ app.get('/:short_url', catchAsync(async (req: Request, res: Response, next: Next
             }
             // Save new click document
             const newClick: ClickType = await click.create(payload);
-            console.log("🚀 ~ file: server.ts:50 ~ app.get ~ payload:", payload)
             // Push click to url
             if (newClick) {
                 const updatedUrl = await url.updateOne({
