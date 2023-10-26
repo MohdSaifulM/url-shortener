@@ -1,5 +1,4 @@
-import { Document } from 'mongoose';
-import { ObjectId } from 'mongoose';
+import { Document, Types } from 'mongoose';
 
 export interface ClickType extends Document {
     location: {
@@ -10,5 +9,5 @@ export interface ClickType extends Document {
     deviceType: string,
     browser: string,
     operatingSystem: string,
-    urlId: ObjectId
+    urlId: Types.ObjectId
 }

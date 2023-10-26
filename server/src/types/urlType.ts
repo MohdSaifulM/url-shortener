@@ -1,4 +1,4 @@
-import { Document, ObjectId } from "mongoose";
+import { Document, Types } from "mongoose";
 import { UserType } from "./userType";
 
 export interface URLType extends Document {
@@ -7,5 +7,5 @@ export interface URLType extends Document {
     original_url: string,
     short_url: string,
     domain: string | null,
-    clicks: [ObjectId]
+    clicks: Types.ObjectId[]
 }

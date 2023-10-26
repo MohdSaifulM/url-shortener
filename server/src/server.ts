@@ -27,6 +27,8 @@ app.use(useragent.express());
 app.use(cors());
 
 //?===========Routes==============
+
+// Handle the redirection of short url
 app.get('/:short_url', catchAsync(async (req: Request, res: Response, next: NextFunction) => {
     const urlEntry = await url.findOne({ short_url: req.params.short_url }, { original_url: 1, _id: 1, short_url: 1 });
     if (urlEntry) {
