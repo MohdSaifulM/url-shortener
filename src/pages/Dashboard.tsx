@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Table, Tooltip } from "flowbite-react";
+import { copyToClipboard } from "../utils/copyToClipboard";
 import analytics_icon from "../assets/view_analytics.svg";
 import edit_url_icon from "../assets/url_edit.svg";
 import delete_url_icon from "../assets/url_delete.svg";
@@ -53,21 +54,6 @@ function Dashboard() {
         }
     ]
 
-    const copyToClipboard = (text: string) => {
-        navigator.clipboard.writeText(text)
-            .then(() => {
-                console.log('Text copied to clipboard');
-                // Show that url is copied and revert after 5 seconds
-                setCopied(true);
-                setTimeout(() => {
-                    setCopied(false);
-                }, 5000)
-            })
-            .catch((err) => {
-                console.error('Unable to copy text: ', err);
-            });
-    }
-
     return (
         <div className="m-10">
             <Table>
@@ -94,7 +80,7 @@ function Dashboard() {
                                             src={copy_url_icon}
                                             className="mr-3 h-2 sm:h-4 cursor-pointer"
                                             alt="copy url icon"
-                                            onClick={() => copyToClipboard(url.short_url)}
+                                            onClick={() => copyToClipboard(url.short_url, setCopied)}
                                         />
                                     </Tooltip>
                                 </Table.Cell>
