@@ -29,9 +29,11 @@ app.use(cors());
 app.get('/:short_url', catchAsync(async (req: Request, res: Response, next: NextFunction) => {
     const urlEntry = await url.findOne({ short_url: req.params.short_url }, { original_url: 1, _id: 1, short_url: 1 });
     if (urlEntry) {
+        // Obtain client's IP
+        const clientIp = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
         // Perform IP geolocation lookup
-        const response: IPinfo = await ipinfoWrapper.lookupIp(req.ip && req.ip !== '::1' ? req.ip.toString() : "8.8.8.8");
-        console.log("🚀 ~ file: server.ts:34 ~ app.get ~ req.ip:", req.ip)
+        const response: IPinfo = await ipinfoWrapper.lookupIp(clientIp && clientIp !== '::1' ? clientIp.toString() : "8.8.8.8");
+        console.log("🚀 ~ file: server.ts:34 ~ app.get ~ clientIp:", clientIp)
 
         if (response) {
             // Create click payload
@@ -66,7 +68,7 @@ app.get('/:short_url', catchAsync(async (req: Request, res: Response, next: Next
                 console.error("Error creating new click");
             }
         } else {
-            console.error(`Error retrieving ip info :: ${req.ip}`);
+            console.error(`Error retrieving ip info :: ${clientIp}`);
         }
         return res.redirect(urlEntry.original_url);
     } else {
