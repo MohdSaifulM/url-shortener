@@ -12,12 +12,13 @@ import IPinfoWrapper, { IPinfo } from "node-ipinfo";
 //?===========Import Routes=======
 import urlRoutes from "./routes/urlRoutes";
 import clickRoutes from "./routes/clickRoutes";
+import userRoutes from "./routes/userRoutes";
 
 const app: Application = express();
 const base = '/api/v1';
 const PORT: number = config.get("SERVER_PORT");
 const uri = config.get("MONGODB_URI") as string;
-const ipinfoWrapper = new IPinfoWrapper("6b772a5c97a017");
+const ipinfoWrapper = new IPinfoWrapper(config.get("IPINFO_TOKEN"));
 
 //?===========Middleware==========
 app.use(express.json());
@@ -78,6 +79,7 @@ app.get('/:short_url', catchAsync(async (req: Request, res: Response, next: Next
     }
 }));
 
+app.use(`${base}/user`, userRoutes);
 app.use(`${base}/url`, urlRoutes);
 app.use(`${base}/click`, clickRoutes);
 

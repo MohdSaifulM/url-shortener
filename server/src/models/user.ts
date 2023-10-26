@@ -1,5 +1,5 @@
 import { model, Schema, Types } from "mongoose";
-import { UserType } from "../types/userType";
+import { UserType, UserModel } from "../types/userType";
 import validator from 'validator';
 import bcrypt from 'bcrypt';
 
@@ -93,4 +93,4 @@ userSchema.statics.updatePassword = async function (
     return user;
 };
 
-export default model<UserType>("User", userSchema);
+export default model<UserType, UserModel>("User", userSchema);

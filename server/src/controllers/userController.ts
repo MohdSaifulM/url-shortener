@@ -22,9 +22,9 @@ export const login = catchAsync(async (req: Request, res: Response): Promise<voi
 });
 
 export const register = catchAsync(async (req: Request, res: Response) => {
-    const { name, email, password, confirmPassword } = req.body;
+    const { username, email, password, confirmPassword } = req.body;
     const logged_in_user: UserType = await user.register(
-        name,
+        username,
         email,
         password,
         confirmPassword
