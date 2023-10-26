@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Navigate to project directory
-cd url-shortener/
+cd url-shortener/server
 
 # Stash any changes on ec2 repo
 git stash
