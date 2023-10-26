@@ -11,6 +11,7 @@ import IPinfoWrapper, { IPinfo } from "node-ipinfo";
 
 //?===========Import Routes=======
 import urlRoutes from "./routes/urlRoutes";
+import clickRoutes from "./routes/clickRoutes";
 
 const app: Application = express();
 const base = '/api/v1';
@@ -76,6 +77,7 @@ app.get('/:short_url', catchAsync(async (req: Request, res: Response, next: Next
 }));
 
 app.use(`${base}/url`, urlRoutes);
+app.use(`${base}/click`, clickRoutes);
 
 app.all("*", (req, res) => {
     res.send("404!");
