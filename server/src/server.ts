@@ -31,6 +31,7 @@ app.get('/:short_url', catchAsync(async (req: Request, res: Response, next: Next
     if (urlEntry) {
         // Perform IP geolocation lookup
         const response: IPinfo = await ipinfoWrapper.lookupIp(req.ip && req.ip !== '::1' ? req.ip.toString() : "8.8.8.8");
+        console.log("🚀 ~ file: server.ts:34 ~ app.get ~ req.ip:", req.ip)
 
         if (response) {
             // Create click payload
@@ -46,6 +47,7 @@ app.get('/:short_url', catchAsync(async (req: Request, res: Response, next: Next
             }
             // Save new click document
             const newClick: ClickType = await click.create(payload);
+            console.log("🚀 ~ file: server.ts:50 ~ app.get ~ payload:", payload)
             // Push click to url
             if (newClick) {
                 const updatedUrl = await url.updateOne({
