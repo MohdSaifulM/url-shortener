@@ -59,7 +59,7 @@ function URLInput() {
         <>
             {
                 showOutputCard ?
-                    <Card className="dark:bg-gray-700 absolute top-2/4 left-2/4 transform -translate-x-1/2 -translate-y-1/2 flex flex-col justify-center items-center font-light">
+                    <Card className="w-4/5 md:w-[30%] lg:w-1/5 dark:bg-gray-700 absolute top-2/4 left-2/4 transform -translate-x-1/2 -translate-y-1/2 flex flex-col justify-center items-center font-light">
                         <div className="flex flex-col gap-4">
                             <div className="flex gap-1">
                                 <img src={link_icon} alt="link icon" className="w-[14px]" />
@@ -107,7 +107,7 @@ function URLInput() {
                             </div>
                         </div>
                     </Card> :
-                    <Card className="dark:bg-gray-700 absolute top-2/4 left-2/4 transform -translate-x-1/2 -translate-y-1/2 flex flex-col justify-center items-center font-light">
+                    <Card className="w-4/5 md:w-[30%] lg:w-1/5 dark:bg-gray-700 absolute top-2/4 left-2/4 transform -translate-x-1/2 -translate-y-1/2 flex flex-col justify-center items-center font-light">
                         <div className="flex flex-col gap-5">
                             <label htmlFor="url-input" className="text-xl text-left text-gray-500 dark:text-white">Shorten URL 👇</label>
                             <input

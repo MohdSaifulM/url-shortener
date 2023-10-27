@@ -1521,6 +1521,10 @@ input:checked + .toggle-bg {
   width: 1rem;
 }
 
+.w-4\/5 {
+  width: 80%;
+}
+
 .w-5 {
   width: 1.25rem;
 }
@@ -4391,14 +4395,14 @@ input:checked + .toggle-bg {
     text-align: center;
   }
 
-  .sm\:text-xs {
-    font-size: 0.75rem;
-    line-height: 1rem;
-  }
-
   .sm\:text-sm {
     font-size: 0.875rem;
     line-height: 1.25rem;
+  }
+
+  .sm\:text-xs {
+    font-size: 0.75rem;
+    line-height: 1rem;
   }
 }
 
@@ -4440,20 +4444,24 @@ input:checked + .toggle-bg {
     height: 100%;
   }
 
-  .md\:h-screen {
-    height: 100vh;
-  }
-
-  .md\:h-\[100vh\] {
-    height: 100vh;
-  }
-
   .md\:w-48 {
     width: 12rem;
   }
 
   .md\:w-auto {
     width: auto;
+  }
+
+  .md\:w-1\/5 {
+    width: 20%;
+  }
+
+  .md\:w-2\/5 {
+    width: 40%;
+  }
+
+  .md\:w-\[30\%\] {
+    width: 30%;
   }
 
   .md\:max-w-xl {
@@ -4509,14 +4517,14 @@ input:checked + .toggle-bg {
     padding: 0px;
   }
 
-  .md\:text-sm {
-    font-size: 0.875rem;
-    line-height: 1.25rem;
-  }
-
   .md\:text-2xl {
     font-size: 1.5rem;
     line-height: 2rem;
+  }
+
+  .md\:text-sm {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
   }
 
   .md\:font-medium {
@@ -4552,6 +4560,10 @@ input:checked + .toggle-bg {
   .lg\:my-8 {
     margin-top: 2rem;
     margin-bottom: 2rem;
+  }
+
+  .lg\:w-1\/5 {
+    width: 20%;
   }
 
   .lg\:py-0 {

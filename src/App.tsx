@@ -20,7 +20,7 @@ function App() {
                 },
                 {
                     path: "/login",
-                    element: <Login />
+                    element: user ? <Login /> : <Navigate to="/" />
                 },
                 {
                     path: "/dashboard",
