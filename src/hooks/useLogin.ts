@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useAuthContext } from "./useAuthContext";
+import { encryptData } from "../utils/encryptData";
+import { decryptData } from "../utils/decryptData";
 import axios from "axios";
 
 export const useLogin = () => {
@@ -8,29 +10,32 @@ export const useLogin = () => {
     const { dispatch } = useAuthContext();
     const api_url = import.meta.env.VITE_API_URL;
 
-    const login = async (username: string, email: string, password: string, confirmPassword: string) => {
+    const login = async (username: string, password: string) => {
         setIsLoading(true);
         setError(null);
 
         try {
-            const response = await axios.post(`${api_url}/user/login`, {
-                username,
-                email,
-                password,
-                confirmPassword
-            });
+            const encryptedData = encryptData(JSON.stringify({username, password}));
 
-            if (response.data) {
-                localStorage.setItem("user", JSON.stringify(response.data));
+            const response = await axios.post(`${api_url}/user/login`, { data: encryptedData });
+            
 
-                dispatch({ type: "LOGIN", payload: response.data });
+            if (!response.data.errors) {
+                const result = decryptData(response.data);
+
+                localStorage.setItem("user", response.data);
+
+                dispatch({ type: "LOGIN", payload: result });
 
                 setIsLoading(false);
+            } else {
+                setIsLoading(false);
+                setError(response.data.message);
             }
-        } catch (error) {
+        } catch (err) {
             setIsLoading(false);
             setError(error);
-            console.error("Error logging in user ::");
+            console.log("Error logging in user ::", error);
         }
     };
 

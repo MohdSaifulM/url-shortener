@@ -4,6 +4,7 @@ import Layout from './pages/Layout.tsx';
 import URLInput from './components/URLInput.tsx';
 import ErrorPage from './pages/ErrorPage.tsx';
 import Dashboard from './pages/Dashboard.tsx';
+import Login from "./pages/Login.tsx";
 
 function App() {
     const { user } = useAuthContext();
@@ -16,6 +17,10 @@ function App() {
                 {
                     path: "/",
                     element: <URLInput />
+                },
+                {
+                    path: "/login",
+                    element: <Login />
                 },
                 {
                     path: "/dashboard",

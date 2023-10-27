@@ -34,19 +34,17 @@ userSchema.statics.register = async function (
     password: string,
     confirmPassword: string,
 ) {
-    if (!username || !email || !password || !confirmPassword)
-        throw Error("All fields must be filled");
+    if (!username || !email || !password || !confirmPassword) return { errors: true, message: "All fields must be filled" };
 
-    if (!validator.isEmail(email)) throw Error("Email is not valid");
+    if (!validator.isEmail(email)) return { errors: true, message: "Email is not valid" };
 
-    if (password !== confirmPassword) throw Error("Passwords do not match");
+    if (password !== confirmPassword) return { errors: true, message: "Passwords do not match" };
 
-    if (!validator.isStrongPassword(password))
-        throw Error("Password is not strong enough");
+    if (!validator.isStrongPassword(password)) return { errors: true, message: "Password is not strong enough" };
 
     const exist = await this.findOne({ $or: [{ username }, { email }] });
 
-    if (exist) throw Error("user already exists");
+    if (exist) return { errors: true, message: "user already exists" };
 
     const date_joined = new Date();
 
@@ -62,15 +60,15 @@ userSchema.statics.register = async function (
 };
 
 userSchema.statics.login = async function (username: string, password: string) {
-    if (!username || !password) throw Error("All fields must be filled");
+    if (!username || !password) return { errors: true, message: "All fields must be filled" };
 
     const user = await this.findOne({ username });
 
-    if (!user) throw Error("Incorrect username");
+    if (!user) return { errors: true, message: "Incorrect username" };
 
     const isValid = await bcrypt.compare(password, user.password);
 
-    if (!isValid) throw Error("Incorrect password");
+    if (!isValid) return { errors: true, message: "Incorrect password" };
 
     return user;
 };
@@ -80,12 +78,11 @@ userSchema.statics.updatePassword = async function (
     confirmPassword: string,
     userId: Types.ObjectId,
 ) {
-    if (!confirmPassword || !password) throw Error("All fields must be filled");
+    if (!confirmPassword || !password) return { errors: true, message: "All fields must be filled" };
 
-    if (password !== confirmPassword) throw Error("Passwords must match!");
+    if (password !== confirmPassword) return { errors: true, message: "Passwords do not match" };
 
-    if (!validator.isStrongPassword(password))
-        throw Error("Password is not strong enough");
+    if (!validator.isStrongPassword(password)) return { errors: true, message: "Password is not strong enough" };
 
     const hash = await bcrypt.hash(password, 12);
     const user = await this.findByIdAndUpdate(userId, { password: hash });

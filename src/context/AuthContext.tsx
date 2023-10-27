@@ -1,5 +1,6 @@
 import { createContext, useReducer, useEffect } from 'react';
 import { authReducer } from '../reducers/authReducer';
+import { decryptData } from '../utils/decryptData';
 import { useJwt } from "react-jwt";
 
 interface User {
@@ -26,13 +27,11 @@ export const AuthContextProvider = ({ children }: any) => {
     let user: User | null = null;
     const userString = localStorage.getItem('user');
 
-    if (userString !== null) user = JSON.parse(userString);
+    if (userString !== null) user = decryptData(userString);
 
     const { isExpired } = useJwt(user ? user.token : "");
 
     if (isExpired) localStorage.removeItem('user');
-
-    console.log(`AuthContext children ${JSON.stringify(children)}`)
 
     useEffect(() => {
         if (user) {

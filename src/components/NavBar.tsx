@@ -1,16 +1,22 @@
 import { Link, useLocation } from 'react-router-dom';
 import { Navbar } from 'flowbite-react';
 import { navTheme } from '../styles-overwrite';
+import { useAuthContext } from '../hooks/useAuthContext';
+import { useLogout } from '../hooks/useLogout';
 import logo from '/web-internet.svg';
 
 function NavBar() {
+
+    const { user } = useAuthContext();
+
+    const { logout } = useLogout();
 
     const location = useLocation();
 
     const navlist = [
         { title: 'Home', navigate: '/' },
         { title: 'Dashboard', navigate: '/dashboard' },
-        { title: 'Login', navigate: '/login' }
+        user ? { title: 'Logout', navigate: '/' } : { title: 'Login', navigate: '/login' }
     ];
 
     return (
@@ -29,6 +35,7 @@ function NavBar() {
                             key={index}
                             active={nav.navigate === location.pathname}
                             theme={navTheme?.link}
+                            onClick={() => user && logout()}
                         >
                             {nav.title}
                         </Navbar.Link>
