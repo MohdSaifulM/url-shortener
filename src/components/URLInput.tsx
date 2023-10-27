@@ -3,6 +3,7 @@ import { toast } from 'react-toastify';
 import { Card, Tooltip } from 'flowbite-react';
 import { UrlInterface } from "../interfaces/Url";
 import { copyToClipboard } from "../utils/copyToClipboard";
+import { useNavigate } from 'react-router-dom';
 import link_icon from '../assets/link.svg';
 import web_icon from '/web-internet.svg'
 import axios from "axios";
@@ -10,6 +11,8 @@ import axios from "axios";
 function URLInput() {
     const api_url = import.meta.env.VITE_API_URL;
     const domain = import.meta.env.VITE_DOMAIN_URL;
+
+    const navigate = useNavigate();
 
     const [inputURL, setInputURL] = useState('');
     const [isValidURL, setIsValidURL] = useState(true);
@@ -81,7 +84,7 @@ function URLInput() {
                                 />
                             </Tooltip>
                             <div className="flex gap-1">
-                                <img src={web_icon} alt="link icon" className="w-[14px]"/>
+                                <img src={web_icon} alt="link icon" className="w-[14px]" />
                                 <label htmlFor="long-url" className="text-sm text-left text-gray-500 dark:text-white">sURL</label>
                             </div>
                             <Tooltip
@@ -95,15 +98,21 @@ function URLInput() {
                                     id="long-url"
                                     className="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     value={`${domain}/${outputURL?.short_url}`}
-                                    disabled 
+                                    disabled
                                     readOnly
                                 />
                             </Tooltip>
-                            <div 
-                                className="text-right cursor-pointer hover:text-blue-500"
+                            <div
+                                className="text-left cursor-pointer hover:text-blue-500"
                                 onClick={() => setShowOutputCard(false)}
                             >
                                 👈 Go Back
+                            </div>
+                            <div
+                                className="text-right cursor-pointer hover:text-blue-500"
+                                onClick={() => navigate('/dashboard')}
+                            >
+                                Go Dashboard 👉
                             </div>
                         </div>
                     </Card> :
@@ -130,6 +139,12 @@ function URLInput() {
                         >
                             Submit
                         </button>
+                        <div
+                            className="text-right cursor-pointer hover:text-blue-500"
+                            onClick={() => navigate('/dashboard')}
+                        >
+                            Go Dashboard ➡️
+                        </div>
                         {/* <div 
                             className="text-xs cursor-pointer hover:text-blue-500"
                         >

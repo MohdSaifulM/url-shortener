@@ -1882,6 +1882,14 @@ input:checked + .toggle-bg {
   overflow-x: scroll;
 }
 
+.overflow-y-scroll {
+  overflow-y: scroll;
+}
+
+.overscroll-x-auto {
+  overscroll-behavior-x: auto;
+}
+
 .scroll-smooth {
   scroll-behavior: smooth;
 }

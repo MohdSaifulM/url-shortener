@@ -15,3 +15,8 @@ export const createShortURL = catchAsync(async (req: Request, res: Response) => 
     const newURL: URLType = await url.create(req.body);
     res.status(200).json(newURL);
 });
+
+export const fetchAllURLs = catchAsync(async (req: Request, res: Response) => {
+    const urls: URLType[] = await url.find({});
+    res.status(200).json(urls);
+});

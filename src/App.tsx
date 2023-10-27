@@ -24,7 +24,7 @@ function App() {
                 },
                 {
                     path: "/dashboard",
-                    element: user ? <Dashboard /> : <Navigate to="/" />
+                    element: <Dashboard />
                 }
             ]
         },
