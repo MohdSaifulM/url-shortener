@@ -63,7 +63,7 @@ function Dashboard() {
     })
 
     return (
-        <div className="m-10">
+        <div className="md:flex md:w-full h-[90%] justify-center items-center">
             <Table>
                 <Table.Head>
                     {
@@ -77,7 +77,7 @@ function Dashboard() {
                         urls.map((url, index) => (
                             <Table.Row key={url._id} className="bg-white dark:border-gray-700 dark:bg-gray-800">
                                 <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">{index + 1}</Table.Cell>
-                                <Table.Cell>{url.original_url}</Table.Cell>
+                                <Table.Cell className="truncate max-w-xs">{url.original_url}</Table.Cell>
                                 <Table.Cell className="flex gap-3 items-center">
                                     {url.short_url}
                                 </Table.Cell>

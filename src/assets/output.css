@@ -1465,6 +1465,18 @@ input:checked + .toggle-bg {
   height: 100vh;
 }
 
+.h-4\/5 {
+  height: 80%;
+}
+
+.h-\[80\%\] {
+  height: 80%;
+}
+
+.h-\[90\%\] {
+  height: 90%;
+}
+
 .max-h-\[90vh\] {
   max-height: 90vh;
 }
@@ -1566,6 +1578,18 @@ input:checked + .toggle-bg {
   width: 100%;
 }
 
+.w-1\/5 {
+  width: 20%;
+}
+
+.min-w-\[700px\] {
+  min-width: 700px;
+}
+
+.min-w-\[320px\] {
+  min-width: 320px;
+}
+
 .max-w-2xl {
   max-width: 42rem;
 }
@@ -1618,8 +1642,16 @@ input:checked + .toggle-bg {
   flex-shrink: 0;
 }
 
+.flex-shrink {
+  flex-shrink: 1;
+}
+
 .shrink-0 {
   flex-shrink: 0;
+}
+
+.flex-grow-0 {
+  flex-grow: 0;
 }
 
 .origin-\[0\] {
@@ -1882,16 +1914,14 @@ input:checked + .toggle-bg {
   overflow-x: scroll;
 }
 
-.overflow-y-scroll {
-  overflow-y: scroll;
-}
-
-.overscroll-x-auto {
-  overscroll-behavior-x: auto;
-}
-
 .scroll-smooth {
   scroll-behavior: smooth;
+}
+
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .whitespace-nowrap {
@@ -4382,6 +4412,10 @@ input:checked + .toggle-bg {
     width: 1.5rem;
   }
 
+  .sm\:w-0 {
+    width: 0px;
+  }
+
   .sm\:max-w-md {
     max-width: 28rem;
   }
@@ -4417,6 +4451,22 @@ input:checked + .toggle-bg {
 @media (min-width: 768px) {
   .md\:inset-0 {
     inset: 0px;
+  }
+
+  .md\:m-10 {
+    margin: 2.5rem;
+  }
+
+  .md\:m-5 {
+    margin: 1.25rem;
+  }
+
+  .md\:m-2 {
+    margin: 0.5rem;
+  }
+
+  .md\:m-1 {
+    margin: 0.25rem;
   }
 
   .md\:mx-2 {
@@ -4456,20 +4506,20 @@ input:checked + .toggle-bg {
     width: 12rem;
   }
 
+  .md\:w-\[30\%\] {
+    width: 30%;
+  }
+
   .md\:w-auto {
     width: auto;
   }
 
-  .md\:w-1\/5 {
-    width: 20%;
+  .md\:w-4\/5 {
+    width: 80%;
   }
 
-  .md\:w-2\/5 {
-    width: 40%;
-  }
-
-  .md\:w-\[30\%\] {
-    width: 30%;
+  .md\:w-full {
+    width: 100%;
   }
 
   .md\:max-w-xl {
@@ -4565,6 +4615,10 @@ input:checked + .toggle-bg {
 }
 
 @media (min-width: 1024px) {
+  .lg\:m-5 {
+    margin: 1.25rem;
+  }
+
   .lg\:my-8 {
     margin-top: 2rem;
     margin-bottom: 2rem;
@@ -4572,6 +4626,10 @@ input:checked + .toggle-bg {
 
   .lg\:w-1\/5 {
     width: 20%;
+  }
+
+  .lg\:w-full {
+    width: 100%;
   }
 
   .lg\:py-0 {
