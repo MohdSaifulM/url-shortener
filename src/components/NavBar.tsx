@@ -1,24 +1,23 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Navbar } from 'flowbite-react';
-import { navTheme } from '../styles-overwrite';
-import { useAuthContext } from '../hooks/useAuthContext';
-import { useLogout } from '../hooks/useLogout';
+// import { navTheme } from '../styles-overwrite';
+// import { useAuthContext } from '../hooks/useAuthContext';
+// import { useLogout } from '../hooks/useLogout';
 import logo from '/web-internet.svg';
 
 function NavBar() {
 
-    const { user } = useAuthContext();
+    // const { user } = useAuthContext();
 
-    const { logout } = useLogout();
+    // const { logout } = useLogout();
 
-    const location = useLocation();
+    // const location = useLocation();
 
-    const navlist = [
-        { title: 'Home', navigate: '/' },
-        { title: 'Dashboard', navigate: '/dashboard' },
-        user ? { title: 'Logout', navigate: '/' } : { title: 'Login', navigate: '/login' }
-    ];
+    // const navlist = [
+    //     { title: 'Home', navigate: '/' },
+    //     { title: 'Dashboard', navigate: '/dashboard' },
+    //     user ? { title: 'Logout', navigate: '/' } : { title: 'Login', navigate: '/login' }
+    // ];
 
     return (
         <Navbar fluid rounded>
