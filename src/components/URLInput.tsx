@@ -130,11 +130,11 @@ function URLInput() {
                         >
                             Submit
                         </button>
-                        <div 
+                        {/* <div 
                             className="text-xs cursor-pointer hover:text-blue-500"
                         >
                             More Options
-                        </div>
+                        </div> */}
                     </Card>
             }
         </>
