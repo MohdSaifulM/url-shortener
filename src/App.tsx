@@ -8,6 +8,8 @@ import Login from "./pages/Login.tsx";
 
 function App() {
     const { user } = useAuthContext();
+    console.log(user,'logged_in_user');
+    const isLoggedIn = user !== null;
 
     const router = createBrowserRouter([
         {
@@ -20,11 +22,11 @@ function App() {
                 },
                 {
                     path: "/login",
-                    element: user ? <Login /> : <Navigate to="/" />
+                    element: !isLoggedIn ? <Login /> : <Navigate to="/" />
                 },
                 {
                     path: "/dashboard",
-                    element: <Dashboard />
+                    element: isLoggedIn ? <Dashboard /> : <Navigate to="/login" />
                 }
             ]
         },
