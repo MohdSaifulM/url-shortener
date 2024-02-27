@@ -24,8 +24,8 @@ An application which allows users to easily create new shortened URLs and when a
 - From the root directory run `npm run dev` to start the frontend application.
 - (OPTIONAL) If working on the tailwindcss run `npm run tailwindcss:watch` to build and apply changes.
 - From the [server](server) directory run `npm run dev` to start the backend server.
-- Frontend application uses an [.env.development](url-shortener-server.saifm.io/RZuMvm) which needs to be placed in the root directory.
-- Backend application uses a [development.json](url-shortener-server.saifm.io/HP4Svh) which needs to be placed in [config](server/config).
+- Frontend application uses an [.env.development](https://url-shortener-server.saifm.io/RZuMvm) which needs to be placed in the root directory.
+- Backend application uses a [development.json](https://url-shortener-server.saifm.io/HP4Svh) which needs to be placed in [config](server/config).
 ## 🌊 Flow of the application
 - Enter the long URL, hit submit and then the URL will be shortened.
 - Access the dashboard to see the URLs that are being shortened and how many clicks from them.
