@@ -8,7 +8,6 @@ import Login from "./pages/Login.tsx";
 
 function App() {
     const { user } = useAuthContext();
-    console.log(user,'logged_in_user');
     const isLoggedIn = user !== null;
 
     const router = createBrowserRouter([

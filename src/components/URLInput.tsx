@@ -4,6 +4,7 @@ import { Card, Tooltip } from 'flowbite-react';
 import { UrlInterface } from "../interfaces/Url";
 import { copyToClipboard } from "../utils/copyToClipboard";
 import { useNavigate } from 'react-router-dom';
+import { useAuthContext } from '../hooks/useAuthContext';
 import link_icon from '../assets/link.svg';
 import web_icon from '/web-internet.svg'
 import axios from "axios";
@@ -11,6 +12,9 @@ import axios from "axios";
 function URLInput() {
     const api_url = import.meta.env.VITE_API_URL;
     const domain = import.meta.env.VITE_DOMAIN_URL;
+
+    const { user } = useAuthContext();
+    const isLoggedIn = user !== null;
 
     const navigate = useNavigate();
 
@@ -38,6 +42,14 @@ function URLInput() {
         try {
             // Check if input is valid
             if (urlPattern.test(inputURL)) {
+                // Check if user is logged in
+                if (!isLoggedIn) {
+                    // Show error toast
+                    toast("Please login to shorten URL");
+                    // Navigate to login page
+                    navigate('/login');
+                    return;
+                }
                 // Save shorten URL
                 const response = await axios.post(`${api_url}/url/create`, { original_url: inputURL, domain: domain });
                 if (response) {
