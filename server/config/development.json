@@ -1,5 +1,8 @@
 {
     "NODE_ENV": "development",
     "SERVER_PORT": 5000,
-    "MONGODB_URI": "mongodb://localhost:27017/url-shortener"
+    "MONGODB_URI": "mongodb://localhost:27017/url-shortener",
+    "CRYPTO_SECRET": "YMTyVbRL8zPuG-228Ui!JygmNd_PaQzRh",
+    "JWT_SECRET": "JZ@QUD4YcXnn7iK8d!rMba7dU!2NHMsKa",
+    "IPINFO_TOKEN": "6c3468f39a0ab3"
 }
