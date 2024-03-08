@@ -5,6 +5,7 @@ import URLInput from './components/URLInput.tsx';
 import ErrorPage from './pages/ErrorPage.tsx';
 import Dashboard from './pages/Dashboard.tsx';
 import Login from "./pages/Login.tsx";
+import Register from "./pages/Register.tsx";
 
 function App() {
     const { user } = useAuthContext();
@@ -26,6 +27,10 @@ function App() {
                 {
                     path: "/dashboard",
                     element: isLoggedIn ? <Dashboard /> : <Navigate to="/login" />
+                },
+                {
+                    path: "/register",
+                    element: <Register />
                 }
             ]
         },
