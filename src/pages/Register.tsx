@@ -107,7 +107,7 @@ function Register() {
                     </div>
                 </div>
             </div>
-            <PopModal toggleModal={toggleModal} closeModal={() => setToggleModal(false)} />
+            <PopModal toggleModal={toggleModal} closeModal={() => setToggleModal(false)} modalType="terms" />
         </section>
     );
 }

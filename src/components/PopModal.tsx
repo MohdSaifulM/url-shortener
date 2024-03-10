@@ -4,9 +4,11 @@ import { Modal, Button } from "flowbite-react";
 function PopModal({
     toggleModal,
     closeModal,
+    modalType,
 }: {
     toggleModal: boolean;
     closeModal: () => void;
+    modalType: string;
 }) {
     const [openModal, setOpenModal] = useState(false);
 
@@ -55,7 +57,7 @@ function PopModal({
             title: "Contact Us",
             description:
                 "If you have any questions or concerns about these terms and conditions, please contact us at admin@surl.com.",
-        }
+        },
     ];
 
     useEffect(() => {
@@ -66,32 +68,42 @@ function PopModal({
         <Modal show={openModal} onClose={() => closeModal()}>
             <Modal.Header>Terms and Conditions</Modal.Header>
             <Modal.Body>
-                <div className="max-w-2xl mx-auto p-4">
-                    <div className="text-sm mb-4">
-                        <p className="mb-2">
-                            Welcome to sURL! Before using our services, please
-                            read these Terms and Conditions carefully.
+                {modalType === "terms" && (
+                    <div className="max-w-2xl mx-auto p-4">
+                        <div className="text-sm mb-4">
+                            <p className="mb-2">
+                                Welcome to sURL! Before using our services,
+                                please read these Terms and Conditions
+                                carefully.
+                            </p>
+                        </div>
+                        {termsAndConditions.map((term, index) => (
+                            <div key={index} className="text-sm mb-4">
+                                <p className="font-bold">{term.title}</p>
+                                <p>{term.description}</p>
+                            </div>
+                        ))}
+                        <p className="text-sm">
+                            By using our URL shortener application, you agree to
+                            abide by these Terms and Conditions. Thank you for
+                            using sURL!
                         </p>
                     </div>
-                    {termsAndConditions.map((term, index) => (
-                        <div key={index} className="text-sm mb-4">
-                            <p className="font-bold">{term.title}</p>
-                            <p>{term.description}</p>
-                        </div>
-                    ))}
-                    <p className="text-sm">
-                        By using our URL shortener application, you agree to
-                        abide by these Terms and Conditions. Thank you for using
-                        sURL!
-                    </p>
-                </div>
+                )}
             </Modal.Body>
-            <Modal.Footer>
-                <Button className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm text-center" onClick={() => closeModal()}>Accept</Button>
-                <Button color="gray" onClick={() => closeModal()}>
-                    Decline
-                </Button>
-            </Modal.Footer>
+            {modalType === "terms" && (
+                <Modal.Footer>
+                    <Button
+                        className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm text-center"
+                        onClick={() => closeModal()}
+                    >
+                        Accept
+                    </Button>
+                    <Button color="gray" onClick={() => closeModal()}>
+                        Decline
+                    </Button>
+                </Modal.Footer>
+            )}
         </Modal>
     );
 }
