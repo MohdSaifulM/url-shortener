@@ -1,4 +1,9 @@
+import { useState } from "react";
+import PopModal from "../components/PopModal";
+
 function Register() {
+    const [toggleModal, setToggleModal] = useState(false);
+
     return (
         <section className="bg-gray-50 dark:bg-gray-900">
             <div
@@ -84,12 +89,12 @@ function Register() {
                                     className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                                 >
                                     I agree with the{" "}
-                                    <a
-                                        href="#"
+                                    <button
+                                        onClick={() => setToggleModal(true)}
                                         className="text-blue-600 hover:underline dark:text-blue-500"
                                     >
                                         terms and conditions
-                                    </a>
+                                    </button>
                                 </label>
                             </div>
                             <button
@@ -102,6 +107,7 @@ function Register() {
                     </div>
                 </div>
             </div>
+            <PopModal toggleModal={toggleModal} closeModal={() => setToggleModal(false)} />
         </section>
     );
 }
