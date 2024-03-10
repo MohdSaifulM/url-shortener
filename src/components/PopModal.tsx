@@ -5,10 +5,14 @@ function PopModal({
     toggleModal,
     closeModal,
     modalType,
+    acceptTerms,
+    declineTerms
 }: {
     toggleModal: boolean;
     closeModal: () => void;
     modalType: string;
+    acceptTerms: () => void;
+    declineTerms: () => void;
 }) {
     const [openModal, setOpenModal] = useState(false);
 
@@ -60,6 +64,16 @@ function PopModal({
         },
     ];
 
+    const handleClick = (action: string) => {
+        if (action === "accept") {
+            acceptTerms();
+            closeModal();
+        } else {
+            declineTerms();
+            closeModal();
+        }
+    };
+
     useEffect(() => {
         setOpenModal(toggleModal);
     }, [toggleModal]);
@@ -95,11 +109,11 @@ function PopModal({
                 <Modal.Footer>
                     <Button
                         className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm text-center"
-                        onClick={() => closeModal()}
+                        onClick={() => handleClick("accept")}
                     >
                         Accept
                     </Button>
-                    <Button color="gray" onClick={() => closeModal()}>
+                    <Button color="gray" onClick={() => handleClick("decline")}>
                         Decline
                     </Button>
                 </Modal.Footer>

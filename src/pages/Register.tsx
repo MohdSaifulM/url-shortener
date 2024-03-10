@@ -3,6 +3,7 @@ import PopModal from "../components/PopModal";
 
 function Register() {
     const [toggleModal, setToggleModal] = useState(false);
+    const [termsChecked, setTermsChecked] = useState(false);
 
     return (
         <section className="bg-gray-50 dark:bg-gray-900">
@@ -79,7 +80,7 @@ function Register() {
                                     <input
                                         id="terms"
                                         type="checkbox"
-                                        value=""
+                                        checked={termsChecked}
                                         className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
                                         required
                                     />
@@ -107,7 +108,7 @@ function Register() {
                     </div>
                 </div>
             </div>
-            <PopModal toggleModal={toggleModal} closeModal={() => setToggleModal(false)} modalType="terms" />
+            <PopModal toggleModal={toggleModal} closeModal={() => setToggleModal(false)} modalType="terms" acceptTerms={() => setTermsChecked(true)} declineTerms={() => setTermsChecked(false)}/>
         </section>
     );
 }
