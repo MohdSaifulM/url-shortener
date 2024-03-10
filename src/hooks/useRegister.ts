@@ -21,6 +21,7 @@ export const useRegister = () => {
             const response = await axios.post(`${api_url}/user/register`, { data: encryptedData });
 
             if (!response.data.errors) {
+                console.log(response.data);
                 const result = decryptData(response.data);
 
                 localStorage.setItem("user", response.data);

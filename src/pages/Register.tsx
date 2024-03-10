@@ -1,9 +1,41 @@
 import { useState } from "react";
+import { useRegister } from "../hooks/useRegister";
+import { toast } from "react-toastify";
+import { useNavigate } from 'react-router-dom';
 import PopModal from "../components/PopModal";
 
 function Register() {
     const [toggleModal, setToggleModal] = useState(false);
     const [termsChecked, setTermsChecked] = useState(false);
+    const [user, setUser] = useState({ username: '', email: '', password: '', confirmPassword: '' });
+
+    const { register, error, userAuthenticated } = useRegister();
+
+    const navigate = useNavigate();
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+        setUser(prevState => ({
+            ...prevState,
+            [name]: value
+        }));
+    };
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!termsChecked) toast("Please accept the terms and conditions");
+        try {
+            await register(user.username, user.email, user.password, user.confirmPassword);
+            if (userAuthenticated) {
+                toast("Successfully registered");
+                navigate('/');
+            } else {
+                toast.error(error);
+            }
+        } catch (err) {
+            console.error("Error registering user ::", error);
+        }
+    }
 
     return (
         <section className="bg-gray-50 dark:bg-gray-900">
@@ -16,7 +48,7 @@ function Register() {
                         <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                             Register as a new user
                         </h1>
-                        <form className="max-w-sm mx-auto">
+                        <form className="max-w-sm mx-auto" onSubmit={handleSubmit}>
                             <div className="mb-5">
                                 <label
                                     htmlFor="username"
@@ -27,8 +59,11 @@ function Register() {
                                 <input
                                     type="username"
                                     id="username"
+                                    name="username"
                                     className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                                     placeholder="username"
+                                    onChange={handleChange}
+                                    value={user.username}
                                     required
                                 />
                             </div>
@@ -42,8 +77,11 @@ function Register() {
                                 <input
                                     type="email"
                                     id="email"
+                                    name="email"
                                     className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                                     placeholder="name@email.com"
+                                    onChange={handleChange}
+                                    value={user.email}
                                     required
                                 />
                             </div>
@@ -57,7 +95,10 @@ function Register() {
                                 <input
                                     type="password"
                                     id="password"
+                                    name="password"
                                     className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                                    onChange={handleChange}
+                                    value={user.password}
                                     required
                                 />
                             </div>
@@ -71,7 +112,10 @@ function Register() {
                                 <input
                                     type="password"
                                     id="repeat-password"
+                                    name="confirmPassword"
                                     className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                                    onChange={handleChange}
+                                    value={user.confirmPassword}
                                     required
                                 />
                             </div>
@@ -81,6 +125,7 @@ function Register() {
                                         id="terms"
                                         type="checkbox"
                                         checked={termsChecked}
+                                        onChange={() => setTermsChecked(!termsChecked)}
                                         className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
                                         required
                                     />
@@ -104,6 +149,12 @@ function Register() {
                             >
                                 Register new account
                             </button>
+                            {
+                                error &&
+                                <p className="text-sm font-light text-red-500 dark:text-red-400">
+                                    {error}
+                                </p>
+                            }
                         </form>
                     </div>
                 </div>

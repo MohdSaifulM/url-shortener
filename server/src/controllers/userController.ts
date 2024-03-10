@@ -35,7 +35,7 @@ export const register = catchAsync(async (req: Request, res: Response) => {
     );
     if (!logged_in_user.errors) {
         const token = createToken(logged_in_user._id);
-        res.status(200).json({ logged_in_user, token });
+        res.status(200).json(encryptData({ logged_in_user, token }));
     } else {
         res.status(200).json(logged_in_user);
     }
