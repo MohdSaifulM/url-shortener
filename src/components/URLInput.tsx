@@ -51,7 +51,8 @@ function URLInput() {
                     return;
                 }
                 // Save shorten URL
-                const response = await axios.post(`${api_url}/url/create`, { original_url: inputURL, domain: domain });
+                // @ts-ignore
+                const response = await axios.post(`${api_url}/url/create`, { original_url: inputURL, domain: domain, user: user?.logged_in_user._id });
                 if (response) {
                     // Show success toast
                     toast("Successfully shorten URL ✅");

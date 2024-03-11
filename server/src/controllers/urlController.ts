@@ -17,6 +17,13 @@ export const createShortURL = catchAsync(async (req: Request, res: Response) => 
 });
 
 export const fetchAllURLs = catchAsync(async (req: Request, res: Response) => {
-    const urls: URLType[] = await url.find({});
+    const { userId } = req.params;
+    const urls: URLType[] = await url.find({user: userId});
     res.status(200).json(urls);
+});
+
+export const deleteURL = catchAsync(async (req: Request, res: Response) => {
+    const { urlId } = req.params;
+    const deleted = await url.deleteOne({ _id: urlId });
+    res.status(200).json(deleted);
 });

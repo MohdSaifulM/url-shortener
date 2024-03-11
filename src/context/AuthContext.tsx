@@ -1,10 +1,11 @@
 import { createContext, useReducer, useEffect } from "react";
 import { authReducer } from "../reducers/authReducer";
 import { decryptData } from "../utils/decryptData";
+import { UserInterface } from "../interfaces/User";
 
 interface User {
     token: string;
-    user: { username: string | null; password: string };
+    user: UserInterface;
 }
 
 interface IContextProps {
